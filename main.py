@@ -46,6 +46,14 @@ hangman_stages = [
     |   |
     O   |
    /|\  |
+        |
+        |    
+    """,
+    """
+    -----
+    |   |
+    O   |
+   /|\  |
    /    |
         |    
     """,
@@ -61,7 +69,6 @@ hangman_stages = [
 
 
 while True:
-    print(hangman_stages[attempts])
     display_word = ''
     for letter in chosen_word:
         if letter in guesses:
@@ -69,6 +76,7 @@ while True:
         else:
             display_word += "_"
     print(f"Word: {display_word}")
+
 
     guess = input("Guess a letter: ").lower()
     if len(guess) != 1 or not guess.isalpha():
@@ -86,10 +94,14 @@ while True:
     else:
         print("Wrong guess!")
         attempts += 1
+        print(f"Incorrect guesses: {attempts}")
+
+    print(hangman_stages[attempts])
 
     if "_" not in display_word:
         print(f"Congratulations! You guessed the word: {chosen_word}")
         break
-    elif attempts >= max_attempts:
+
+    if attempts >= max_attempts:
         print(f"Sorry, you ran out of attempts. The word was: {chosen_word}")
         break
